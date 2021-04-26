@@ -18,35 +18,56 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-#	df= pd.read_csv("spam.csv", encoding="latin-1")
-#	df.drop(['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'], axis=1, inplace=True)
-#	# Features and Labels
-#	df['label'] = df['class'].map({'ham': 0, 'spam': 1})
-#	X = df['message']
-#	y = df['label']
-#	
-#	# Extract Feature With CountVectorizer
-#	cv = CountVectorizer()
-#	X = cv.fit_transform(X) # Fit the Data
-#    
-#    pickle.dump(cv, open('tranform.pkl', 'wb'))
-#    
-#    
-#	from sklearn.model_selection import train_test_split
-#	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
-#	#Naive Bayes Classifier
-#	from sklearn.naive_bayes import MultinomialNB
-#
-#	clf = MultinomialNB()
-#	clf.fit(X_train,y_train)
-#	clf.score(X_test,y_test)
-#    filename = 'nlp_model.pkl'
-#    pickle.dump(clf, open(filename, 'wb'))
+# def get_labels_and_texts(file):
+#     labels = []
+#     texts = []
+#     for line in bz2.BZ2File(file):
+#         x = line.decode("utf-8")
+#         labels.append(int(x[9]) - 1)
+#         texts.append(x[10:].strip())
+#     return np.array(labels), texts
+# train_labels, train_texts = get_labels_and_texts('train.ft.txt.bz2')
+
+
+# y=train_labels[0:500]
+
+# #text preprocessing
+# import re
+# NON_ALPHANUM = re.compile(r'[\W]')
+# NON_ASCII = re.compile(r'[^a-z0-1\s]')
+# def normalize_texts(texts):
+#     normalized_texts = []
+#     for text in texts:
+#         lower = text.lower()
+#         no_punctuation = NON_ALPHANUM.sub(r' ', lower)
+#         no_non_ascii = NON_ASCII.sub(r'', no_punctuation)
+#         normalized_texts.append(no_non_ascii)
+#     return normalized_texts
+        
+# train_texts = normalize_texts(train_texts)
+
+# #counter vectorize
+# from sklearn.feature_extraction.text import CountVectorizer
+
+# cv = CountVectorizer(binary=True)
+# cv.fit(train_texts)
+# x = cv.transform(train_texts)
+# pickle.dump(cv, open('tranform.pkl', 'wb'))
+
+# #model
+# from sklearn.linear_model import LogisticRegression
+# #from sklearn.metrics import accuracy_score
+# #from sklearn.model_selection import train_test_split
+
+
+
+
     
-	#Alternative Usage of Saved Model
-	# joblib.dump(clf, 'NB_spam_model.pkl')
-	# NB_spam_model = open('NB_spam_model.pkl','rb')
-	# clf = joblib.load(NB_spam_model)
+# lr = LogisticRegression(C=0.1)
+# clf=lr.fit(x,y)
+    
+# filename = 'nlp_model.pkl'
+# pickle.dump(clf, open(filename, 'wb'))
 
 	if request.method == 'POST':
 		message = request.form['message']

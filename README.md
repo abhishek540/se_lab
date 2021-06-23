@@ -2,6 +2,8 @@
 # Project: Sentiment Analyser
 
 Abhishek Kumar - 185540
+Ritwik Duggal - 185528
+Himansh - 185539
 
 ---
 
